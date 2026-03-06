@@ -28,9 +28,9 @@ targets: [
 
 The steps below assume that your iOS device has a network connection to the drone, such as WiFi.
 
-By default, the SDK will connect using MAVLink on UDP port 14540 to match the default port of the PX4 SITL (software in the loop simulation) drone.
+By default, the SDK can connect to PX4 SITL using MAVLink on UDP port 14540 (`udp://:14540`).
 
-The backend is currently limited to UDP only, even though the core supports UDP, TCP, and serial.
+`systemAddress` supports the MAVSDK URL schemes exposed by the backend build (for example UDP, TCP, and serial when available).
 
 ```swift
 import MavsdkServer
@@ -38,7 +38,18 @@ import Mavsdk
 
 let port = mavsdkServer.run()
 let drone = Drone(port: Int32(port))
+drone.connect(systemAddress: "udp://:14540")
 ```
+
+You can also use other connection types via `systemAddress`, for example:
+
+```swift
+drone.connect(systemAddress: "udp://:14540")
+drone.connect(systemAddress: "tcp://<host>:<port>")
+drone.connect(systemAddress: "serial:///dev/tty.usbserial-0001:57600") // if serial is supported on your target platform
+```
+
+Supported schemes depend on the linked `mavsdk_server` binary version and target platform.
 
 After that, you can start writing some code [as described below](#start-writing-code).
 
