@@ -47,8 +47,8 @@ let package = Package(
             ]
     ),
     .binaryTarget(name: "mavsdk_server",
-                      url: "https://github.com/yukihiratype2/MAVSDK-Swift/releases/download/v3.15.0-rfly-catalyst1/mavsdk_server.xcframework.zip",
-                      checksum: "d251beab4dde11b39ea8e37f94b1cac2ef7b68efa031a5569a4b97d81117e252"),
+                      url: "https://github.com/yukihiratype2/MAVSDK-Swift/releases/download/v3.15.0-rfly-catalyst2/mavsdk_server.xcframework.zip?cachebust=1",
+                      checksum: "0be05a02a9d4aa60b2e2accf466a1a13af75251f1a81e3ea4085e49dd5055316"),
     .testTarget(name: "MavsdkTests",
                 dependencies: [
                   "Mavsdk",
