@@ -31,6 +31,7 @@ let package = Package(
   targets: [
     .target(name: "Mavsdk",
             dependencies: [
+                "MavsdkServer",
                 .product(name: "GRPC", package: "grpc-swift"),
                 .product(name: "RxSwift", package: "RxSwift"),
                 .product(name: "RxBlocking", package: "RxSwift")
@@ -46,9 +47,10 @@ let package = Package(
                 "mavsdk_server"
             ]
     ),
-    .binaryTarget(name: "mavsdk_server",
-                      url: "https://github.com/yukihiratype2/MAVSDK-Swift/releases/download/v3.15.0-rfly-catalyst4/mavsdk_server.xcframework.zip?cachebust=1",
-                      checksum: "221449fdc231b55ea8ce8df22d26706aaec1e7be0d369e5fa75def1b71dc42f1"),
+    .binaryTarget(
+      name: "mavsdk_server",
+      path: ".catalyst-package/mavsdk_server.xcframework"
+    ),
     .testTarget(name: "MavsdkTests",
                 dependencies: [
                   "Mavsdk",
