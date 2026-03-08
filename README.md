@@ -70,6 +70,19 @@ _ = drone.telemetry.position
      })
 ```
 
+If you need raw MAVLink messages instead of parsed telemetry, use `mavlinkDirect`:
+
+```swift
+_ = drone.mavlinkDirect
+     .subscribeMessage(messageName: "BATTERY_STATUS")
+     .subscribe(onNext: { message in
+          print(message.messageName)
+          print(message.fieldsJson)
+     }, onError: { error in
+          print(error.localizedDescription)
+     })
+```
+
 You can learn more about [RxSwift](https://github.com/ReactiveX/RxSwift), and check out [MAVSDK-Swift-Example](https://github.com/mavlink/MAVSDK-Swift-Example) for more information on using this framework.
 
 ## Contribute
